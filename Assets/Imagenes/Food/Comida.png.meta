@@ -3,7 +3,7 @@ guid: 500b4deebbb1b794f891aa288ff1a31b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -517,28 +516,28 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Comida_0: 990977887
-      Comida_1: 1174590322
+      Comida_21: -1592123980
+      Comida_9: 812678840
       Comida_10: -99182875
-      Comida_11: 493528411
-      Comida_12: -460788761
-      Comida_13: -2048171229
-      Comida_14: 1478788633
-      Comida_15: 1966501025
+      Comida_4: 1267772505
       Comida_16: 1465150663
+      Comida_1: 1174590322
+      Comida_14: 1478788633
+      Comida_19: 1888622464
+      Comida_6: -400389776
+      Comida_11: 493528411
       Comida_17: 284893767
       Comida_18: -1009951085
-      Comida_19: 1888622464
-      Comida_2: -1612940216
-      Comida_20: -1791436322
-      Comida_21: -1592123980
       Comida_3: -183131757
-      Comida_4: 1267772505
-      Comida_5: 448420990
-      Comida_6: -400389776
-      Comida_7: -499686335
+      Comida_20: -1791436322
       Comida_8: 1083515283
-      Comida_9: 812678840
+      Comida_15: 1966501025
+      Comida_5: 448420990
+      Comida_13: -2048171229
+      Comida_12: -460788761
+      Comida_0: 990977887
+      Comida_2: -1612940216
+      Comida_7: -499686335
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
