@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; //Agregar libreria a llamar
 using TMPro;
+using Unity.VisualScripting;
 //Agregar las librerias de las cuales vamos a heredar los metodos necesarios
 public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -28,6 +29,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rTransform = copy.GetComponent<RectTransform>();
         find.SetActive(true);
         find.GetComponentInChildren<TextMeshProUGUI>().text = handleText(name);
+        setOpacity(0f);
     }
 
     public void OnBeginDrag(PointerEventData DeventData)
@@ -37,18 +39,14 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData EeventData)
     {
-        //Realizar acciones necesarias al soltar el objeto
         find.SetActive(false);
         Destroy(copy);
-
+        setOpacity(1f);
     }
 
     public void OnDrag(PointerEventData ODeventData)
     {
-        //Modificamos nuestro punto de anclaje de la imagen al punto donde se hizo click
-        //y poder arrastrar el objeto
         rTransform.anchoredPosition += ODeventData.delta;
-
     }
 
     public string handleText(string s)
@@ -58,5 +56,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         return s;
     }
 
+    public void setOpacity(float number)
+    {
+        Color color = gameObject.GetComponent<Image>().color;
+        color.a = number;
+        gameObject.GetComponent<Image>().color = color;
+    }
 
 }

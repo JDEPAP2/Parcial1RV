@@ -7,9 +7,10 @@ public class OrderManager : MonoBehaviour
     public bool isComplete;
     public MenuManager menu;
     public Dictionary<int, List<string>> orders;
+    public GameObject start;
     //public List<List<string>> orders;
 
-    void Start()
+    void Awake()
     {
         orders = new Dictionary<int, List<string>>();
     }
@@ -17,7 +18,13 @@ public class OrderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(orders.Count > 0)
+        {
+            start.SetActive(true);
+        }else
+        {
+            start.SetActive(false);
+        }
     }
 
     public void HandleRecipe(int n)
@@ -31,15 +38,6 @@ public class OrderManager : MonoBehaviour
             List<string> recipe = menu.getRecipe(n);
             orders.Add(n, recipe);
         }
-        
-        foreach (List<string> e in orders.Values)
-        {
-            string mss = "";
-            foreach ( string l in e)
-            {
-                mss += l + ",";
-            }
-            Debug.Log("Hay:" + mss + "\n");
-        }
+       
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    public OrderManager orders;
     public bool isComplete, isOrdering;
+
 
     // Update is called once per frame
     void Update()
@@ -28,8 +30,6 @@ public class MenuManager : MonoBehaviour
                     "huevo",
                     "tocineta",
                     "salchicha",
-                    "tomate",
-                    "sal"
                 });
                 break;
             case 2:
@@ -37,8 +37,8 @@ public class MenuManager : MonoBehaviour
                     "agua",
                     "cilantro",
                     "zanahoria",
-                    "tomate",
-                    "cebolla",
+                    "cebolla_larga",
+                    "cebolla_roja",
                     "sal"
                 });
                 break;
@@ -65,11 +65,32 @@ public class MenuManager : MonoBehaviour
                     "agua",
                     "manzana",
                     "fresa",
-                    "azucar"
+                    "miel"
                 });
                 break;
         }
         return elements;
+    }
+
+
+    public string getNameRecipe(int n)
+    {
+        
+        switch (n)
+        {
+            case 1:
+                return "Huevos Rancheros";
+            case 2:
+                return "Sancocho Rosano";
+            case 3:
+                return "Hamburguesa Angus";
+            case 4:
+                return "Capuccino Late";
+            case 5:
+                return "Infusion Tropical";
+        }
+
+        return "";
     }
 
 }
