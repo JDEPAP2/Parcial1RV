@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class QueueManager : MonoBehaviour
 {
     public OrderManager orders;
-    public GameObject obj;
-    public bool isChange = true;
+    public List<string> active;
+    public bool isChange = true, recipeList;
 
     private Dictionary<int, List<string>> inGameOrders;
     void Start()
     {
-        inGameOrders = orders.orders;
+
+        inGameOrders = new Dictionary<int, List<string>>();
+
+        foreach (KeyValuePair<int, List<string>> pair in inGameOrders)
+        {
+            inGameOrders.Add(pair.Key, pair.Value);
+        }
     }
 
     private void Update()
@@ -28,8 +35,14 @@ public class QueueManager : MonoBehaviour
                 copy.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
                 copy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = orders.menu.getNameRecipe(i);
-                if (!first)
-                {copy.transform.GetChild(3).gameObject.SetActive(true);}
+                if (first)
+                {
+                    if (recipeList)
+                    {
+
+                    }
+                }
+                else{copy.transform.GetChild(3).gameObject.SetActive(true);}
                 copy.SetActive(true);
                 first = false;
             }
