@@ -35,7 +35,6 @@ public class MenuManager : MonoBehaviour
             case 2:
                 elements.AddRange(new List<string>(){
                     "agua",
-                    "cilantro",
                     "zanahoria",
                     "cebolla_larga",
                     "cebolla_roja",
@@ -63,6 +62,9 @@ public class MenuManager : MonoBehaviour
             case 5:
                 elements.AddRange(new List<string>(){
                     "agua",
+                    "toronja",
+                    "cereza",
+                    "limon",
                     "manzana",
                     "fresa",
                     "miel"

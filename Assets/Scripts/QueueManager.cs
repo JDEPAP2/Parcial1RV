@@ -14,21 +14,24 @@ public class QueueManager : MonoBehaviour
         inGameOrders = orders.orders;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (isChange)
+        if (inGameOrders != null && isChange)
         {
             isChange = false;
+            bool first = true;
             foreach (int i in inGameOrders.Keys)
             {
                 GameObject copy = Instantiate(gameObject.transform.GetChild(0).gameObject);
                 copy.transform.SetParent(transform);
                 copy.transform.position = transform.position;
-                copy.transform.localScale = transform.localScale;
+                copy.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-                copy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = orders.menu.getNameRecipe(i+1);
+                copy.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = orders.menu.getNameRecipe(i);
+                if (!first)
+                {copy.transform.GetChild(3).gameObject.SetActive(true);}
                 copy.SetActive(true);
+                first = false;
             }
         }
     }

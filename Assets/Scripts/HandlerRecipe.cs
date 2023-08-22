@@ -9,9 +9,9 @@ using Unity.VisualScripting;
 public class HandlerRecipe : MonoBehaviour
 {
     public OrderManager o;
-    public TextMeshProUGUI text;
+    public TextMeshProUGUI text, desc;
     public Image recipeImg;
-    public List<string> titles;
+    public List<string> descs;
     public List<Sprite> images;
 
     Dictionary<int, List<string>> orders;
@@ -40,7 +40,11 @@ public class HandlerRecipe : MonoBehaviour
         if (orders != null && orders.Count > 0)
         {
             text.text = o.menu.getNameRecipe(orders.Keys.ToList<int>()[index]);
-            recipeImg.sprite = images[orders.Keys.ToList<int>()[index] - 1];
+            if(recipeImg != null)
+            {
+                recipeImg.sprite = images[orders.Keys.ToList<int>()[index] - 1];
+            }
+            desc.text = descs[orders.Keys.ToList<int>()[index] - 1];
 
             if (orders.Count == 1){
                 past.SetActive(false);
