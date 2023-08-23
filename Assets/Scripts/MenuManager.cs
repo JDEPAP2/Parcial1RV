@@ -95,4 +95,49 @@ public class MenuManager : MonoBehaviour
         return "";
     }
 
+
+    public Dictionary<string,string> isInComponent(int n)
+    {
+        Dictionary<string, string> res = new Dictionary<string, string>();
+
+        switch (n)
+        {
+            case 1:
+                res.Add("salchicha", "cuchillo");
+                res.Add("tocineta", "sarten");
+                res.Add("huevo", "sarten");
+                break;
+            case 2:
+                res.Add("agua", "microondas");
+                res.Add("cebolla_roja", "cuchillo");
+                res.Add("cebolla_larga", "sarten");
+                res.Add("zanahoria", "microondas");
+                res.Add("sal", "sarten");
+                break;
+            case 3:
+                res.Add("pan", "sarten");
+                res.Add("tocineta", "cuchillo");
+                res.Add("tomate", "cuchillo");
+                res.Add("lechuga", "cuchillo");
+                res.Add("carne", "microondas");
+                res.Add("queso", "sarten");
+                break;
+            case 4:
+                res.Add("cafe", "cafetera");
+                res.Add("leche", "microondas");
+                res.Add("azucar", "cafetera");
+                res.Add("crema_batida", "cafetera");
+                break;
+            case 5:
+                res.Add("agua", "cafetera");
+                res.Add("manzana", "cuchillo");
+                res.Add("toronja", "cuchillo");
+                res.Add("limon", "cuchillo");
+                res.Add("fresa", "cuchillo");
+                res.Add("miel", "cafetera");
+                res.Add("cereza", "cafetera");
+                break;
+        }
+        return res;
+    }
 }

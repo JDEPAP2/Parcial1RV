@@ -38,10 +38,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
     public void OnEndDrag(PointerEventData EeventData)
-    {
-        find.SetActive(false);
+    {       
         Destroy(copy);
-        setOpacity(1f);
     }
 
     public void OnDrag(PointerEventData ODeventData)
@@ -61,6 +59,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         Color color = gameObject.GetComponent<Image>().color;
         color.a = number;
         gameObject.GetComponent<Image>().color = color;
+    }
+
+    private void OnDestroy()
+    {
+        find.SetActive(false);
+        setOpacity(1f);
     }
 
 }

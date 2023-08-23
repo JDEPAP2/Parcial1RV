@@ -10,6 +10,7 @@ public class QueueManager : MonoBehaviour
     public OrderManager orders;
     public List<string> activeList;
     public bool isChange = true, recipeList;
+    public int index = 0; 
 
     private Dictionary<int, List<string>> inGameOrders;
     void Start()
@@ -20,6 +21,8 @@ public class QueueManager : MonoBehaviour
         {
             inGameOrders.Add(pair.Key,  pair.Value.ConvertAll(val => val));
         }
+
+        index = inGameOrders.Keys.ToList<int>()[0];
     }
 
     private void Update()
@@ -28,8 +31,9 @@ public class QueueManager : MonoBehaviour
         {
             isChange = false;
             bool first = true;
-
             int count = gameObject.transform.childCount;
+            index = inGameOrders.Keys.ToList<int>()[0];
+
             if (activeList == null || activeList.Count == 0)
             {activeList = inGameOrders.First().Value;}
             else
