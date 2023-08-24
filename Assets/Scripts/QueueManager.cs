@@ -22,7 +22,10 @@ public class QueueManager : MonoBehaviour
             inGameOrders.Add(pair.Key,  pair.Value.ConvertAll(val => val));
         }
 
-        index = inGameOrders.Keys.ToList<int>()[0];
+        if(inGameOrders.Count > 0)
+        {
+            index = inGameOrders.Keys.ToList<int>()[0];
+        }
     }
 
     private void Update()
@@ -66,17 +69,21 @@ public class QueueManager : MonoBehaviour
                 copy.SetActive(true);
                 first = false;
             }
+        }else if(gameObject.transform.childCount == 2 && isChange)
+        {
+            Destroy(gameObject.transform.GetChild(1).gameObject);
         }
     }
 
     public void RemoveObject()
     {
-        isChange = true;
         inGameOrders.Remove(inGameOrders.Keys.ToList<int>()[0]);
 
         if(inGameOrders.Count == 0)
         {
             orders.menu.isComplete = true;
         }
+        isChange = true;
+        recipeList = true;
     }
 }

@@ -11,7 +11,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     //La posicion de nuestro objeto a arrastrar
     private RectTransform rTransform;
     private GameObject copy, find;
-
+    private bool repeat;
 
     private void Awake()
     {
@@ -19,22 +19,31 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         find = prnt.transform.GetChild(0).gameObject;
     }
 
+    private void Update()
+    {
+        if(copy.IsDestroyed() && repeat)
+        {
+            find.SetActive(false);
+            setOpacity(1f);
+            repeat = false;
+        }
+    }
+
     public void OnPointerDown(PointerEventData PeventData)
+    {
+    }
+
+    public void OnBeginDrag(PointerEventData DeventData)
     {
         copy = Instantiate(gameObject);
         copy.transform.SetParent(transform.parent);
         copy.transform.position = transform.position;
         copy.transform.localScale = transform.localScale;
-
+        repeat = true;
         rTransform = copy.GetComponent<RectTransform>();
         find.SetActive(true);
         find.GetComponentInChildren<TextMeshProUGUI>().text = handleText(name);
         setOpacity(0f);
-    }
-
-    public void OnBeginDrag(PointerEventData DeventData)
-    {
-        //Realizar acciones necesarias al arrastrar el objeto
     }
 
     public void OnEndDrag(PointerEventData EeventData)
@@ -44,7 +53,10 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData ODeventData)
     {
-        rTransform.anchoredPosition += ODeventData.delta;
+        if (!copy.IsDestroyed())
+        {
+            rTransform.anchoredPosition += ODeventData.delta;
+        }
     }
 
     public string handleText(string s)
@@ -59,12 +71,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         Color color = gameObject.GetComponent<Image>().color;
         color.a = number;
         gameObject.GetComponent<Image>().color = color;
-    }
-
-    private void OnDestroy()
-    {
-        find.SetActive(false);
-        setOpacity(1f);
     }
 
 }

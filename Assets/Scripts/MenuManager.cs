@@ -95,10 +95,51 @@ public class MenuManager : MonoBehaviour
         return "";
     }
 
+    public int getLenRecipe(int n)
+    {
+
+        switch (n)
+        {
+            case 1:
+                return 3;
+            case 2:
+                return 5;
+            case 3:
+                return 6;
+            case 4:
+                return 4;
+            case 5:
+                return 7;
+        }
+
+        return 0;
+    }
+
+
+    public int getPriceRecipe(int n)
+    {
+
+        switch (n)
+        {
+            case 1:
+                return 12000;
+            case 2:
+                return 20000;
+            case 3:
+                return 15000;
+            case 4:
+                return 7000;
+            case 5:
+                return 9000;
+        }
+
+        return 0;
+    }
+
 
     public Dictionary<string,string> isInComponent(int n)
     {
-        Dictionary<string, string> res = new Dictionary<string, string>();
+        Dictionary<string, string> res = new();
 
         switch (n)
         {
