@@ -12,6 +12,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private RectTransform rTransform;
     private GameObject copy, find;
     private bool repeat;
+    public AudioSource audio; 
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         find.SetActive(true);
         find.GetComponentInChildren<TextMeshProUGUI>().text = handleText(name);
         setOpacity(0f);
+        audio.Play();
     }
 
     public void OnEndDrag(PointerEventData EeventData)

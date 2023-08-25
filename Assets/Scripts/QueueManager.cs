@@ -10,9 +10,11 @@ public class QueueManager : MonoBehaviour
     public OrderManager orders;
     public List<string> activeList;
     public bool isChange = true, recipeList;
-    public int index = 0; 
+    public int index = 0;
+    public GameObject closed;
 
     private Dictionary<int, List<string>> inGameOrders;
+
     void Start()
     {
         inGameOrders = new Dictionary<int, List<string>>();
@@ -28,9 +30,24 @@ public class QueueManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        inGameOrders = new Dictionary<int, List<string>>();
+
+        foreach (KeyValuePair<int, List<string>> pair in orders.orders)
+        {
+            inGameOrders.Add(pair.Key, pair.Value.ConvertAll(val => val));
+        }
+
+        if (inGameOrders.Count > 0)
+        {
+            index = inGameOrders.Keys.ToList<int>()[0];
+        }
+    }
+
     private void Update()
     {
-        if (inGameOrders != null && inGameOrders.Count > 0 && isChange)
+        if ((inGameOrders != null && inGameOrders.Count > 0 && isChange))
         {
             isChange = false;
             bool first = true;
@@ -82,6 +99,7 @@ public class QueueManager : MonoBehaviour
         if(inGameOrders.Count == 0)
         {
             orders.menu.isComplete = true;
+            closed.SetActive(true);
         }
         isChange = true;
         recipeList = true;

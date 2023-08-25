@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
-
 public class OrderManager : MonoBehaviour
 {
-    public bool isComplete;
+    public bool isComplete, restart;
     public MenuManager menu;
+    public List<Toggle> toggles;
     public Dictionary<int, List<string>> orders;
     public GameObject start;
     //public List<List<string>> orders;
@@ -29,15 +30,26 @@ public class OrderManager : MonoBehaviour
 
     public void HandleRecipe(int n)
     {
-        if (orders.ContainsKey(n))
+        if (orders.ContainsKey(n) && !restart)
         {
             orders.Remove(n);
         }
-        else
+        else if(!restart)
         {
             List<string> recipe = menu.getRecipe(n);
             orders.Add(n, recipe);
         }
        
+    }
+
+    public void Restart()
+    {
+        restart = true;
+        orders.Clear();
+        foreach (Toggle t in toggles)
+        {
+            t.isOn = false;
+        }
+        restart = false;
     }
 }
